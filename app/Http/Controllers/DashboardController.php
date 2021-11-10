@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Building;
 use App\Models\Client;
 use App\Models\Damage;
+use App\Models\Invoice;
+use App\Models\Note;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +17,8 @@ class DashboardController extends Controller
        public function index(){
 
            if(Auth::user()->hasRole('user')){
-               return view('userdash');
+//               return view('userdash');
+               dd('test');
            }elseif(Auth::user()->hasRole('supervisor')){
                return view('supervisordash');
            }elseif(Auth::user()->hasRole('admin')){
@@ -31,14 +34,29 @@ class DashboardController extends Controller
                $paidTotalNameAndGates = Client::select('*')->where('clients.paid',1)->get();
                $debtTotalNameAndGates = Client::select('*')->where('clients.paid',null)->get();
 
+               $fixedDamages = DB::table('damages')->where('fixed',null)->get();
+
+               $notes = Note::all();
+               $paymentThroughInvoices = Client::select(
+
+                   "clients.id",
+                   "invoices.client_id"
+
+               )->join("invoices", "clients.id", "=", "invoices.client_id")
+
+                   ->sum('clients.payment');
+
+
+//               dd($paymentThroughInvoices);
+
                return view('dashboard',compact('users','buildings',
                    'clients','paymentTotal','paidTotal','debtTotal','paidTotalNameAndGates',
-                   'debtTotalNameAndGates','damages' ));
+                   'debtTotalNameAndGates','damages','paymentThroughInvoices','fixedDamages','notes' ));
 
        }
 }
 
-        public function profile(){
-               return view('myprofile');
-        }
+//        public function profile(){
+//               return view('myprofile');
+//        }
 }

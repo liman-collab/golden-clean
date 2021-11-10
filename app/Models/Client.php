@@ -36,7 +36,9 @@ class Client extends Model
     public function gate(){
         return $this->belongsTo(Gate::class);
     }
-
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
+    }
 
     public function setStartMonthAttribute($value){
         $this->attributes['start_month'] = Carbon::createFromFormat('m/d/Y',$value)->format('Y-m-d');

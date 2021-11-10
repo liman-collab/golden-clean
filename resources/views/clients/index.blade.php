@@ -1,9 +1,19 @@
 @extends('layouts.main')
 
 @section('content')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
     <div class="container-fluid">
+        <div class="input-group m-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Kerko</span>
+            </div>
+            {{--    <div class="col-xs-4">--}}
+            <input class="form-control col-sm-2" id="myInput" type="text">
+            {{--    </div>--}}
 
+        </div>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -17,8 +27,6 @@
                     @endif
 
                 </div>
-
-
 
 
             </div>
@@ -61,14 +69,14 @@
                             <th>Sherbimet</th>
                             <th>Fillimi i muajit</th>
                             <th>Fundi i muajit</th>
-                            <th>Totali: {{$paymentTotal}} Euro</th>
+                            <th>Pagesat</th>
 
                             <th>Manage</th>
                         </tr>
                         </tfoot>
-                        <tbody>
+                        <tbody  id="myTable">
                         @foreach($clients as $client)
-                            <tr  class="{{$client->paid === 1 ? 'table-success' : 'table-danger'}} text-dark">
+                            <tr class="text-dark" >
                                 <td>{{$client->id}}</td>
                                 <td>{{$client->first_name}}</td>
                                 <td>{{$client->last_name}}</td>
@@ -95,5 +103,15 @@
         </div>
 
     </div>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 
 @endsection

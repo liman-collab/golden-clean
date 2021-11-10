@@ -15,18 +15,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Pagesat (Mujore)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$paymentTotal}} Euro</div>
-
-                                {{--                                     <div>--}}
-
-                                {{--                                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target=".bd-example-modal-lg">--}}
-                                {{--                                                {{$paidTotal}}--}}
-                                {{--                                            </button>--}}
-                                {{--                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target=".bd-example2-modal-lg">--}}
-                                {{--                                                {{$debtTotal}}--}}
-                                {{--                                            </button>--}}
-                                {{--                                        </div>--}}
+                                    Pagesat</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$paymentThroughInvoices}} Euro</div>
 
 
                             </div>
@@ -173,15 +163,15 @@
                                 </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$damages->count()}}</div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$fixedDamages->count()}}</div>
                                     </div>
-                                    <div class="col">
-                                        <div class="progress progress-sm mr-2">
-                                            <div class="progress-bar bg-info" role="progressbar"
-                                                 style="width: 17%" aria-valuenow="17" aria-valuemax="100" aria-valuemin="0"
-                                            ></div>
-                                        </div>
-                                    </div>
+{{--                                    <div class="col">--}}
+{{--                                        <div class="progress progress-sm mr-2">--}}
+{{--                                            <div class="progress-bar bg-info" role="progressbar"--}}
+{{--                                                 style="width: 17%" aria-valuenow="17" aria-valuemax="100" aria-valuemin="0"--}}
+{{--                                            ></div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -212,7 +202,13 @@
         </div>
 
         <!-- Content Row -->
-
+{{--        <div class="card mx-auto">--}}
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{session('message')}}
+                </div>
+            @endif
+{{--        </div>--}}
         <div class="row">
 
             <!-- Area Chart -->
@@ -229,22 +225,117 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                  aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <div class="dropdown-header">Mbaj informacionet:</div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">Sheno</a>
                             </div>
                         </div>
                     </div>
+
                     <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-area">
-                            <canvas id="myAreaChart"></canvas>
+                    <div class="card-body" style="overflow-y: scroll;">
+                        <div class="chart-area" >
+                                @foreach($notes as $note)
+                                    - {{$note->description}} ({{$note->created_at->format('Y-m-d')}})
+
+                                <form class="d-inline-block" method="POST" action="{{ route('notes.destroy', $note->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="bg-light border-0 text-primary p-0 btn-link" >Delete </button>
+                                </form>
+                                | <a href="{{route('notes.edit',$note->id)}}" data-toggle="modal" data-target="#exampleModal1"> Edit</a>  <br>
+                                @endforeach
                         </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Mbaj shenim</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="text-md-left"  method="POST" action="{{route('notes.store')}}">
+                                @csrf
+                            <div class="form-group">
+                                <label for="description" class="col-md-4 col-form-label text-md-left">{{ __('Shenim') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus>
+
+                                    @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Register') }}
+                                    </button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
+
+            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ndrysho shenimin</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @if(!empty(count($notes)))
+                            <form class="text-md-left"  method="POST" action="{{route('notes.update', $note->id)}}">
+                                @csrf
+                                @method('PUT')
+                                <div class="form-group">
+                                    <label for="description" class="col-md-4 col-form-label text-md-left">{{ __('Shenim') }}</label>
+
+                                    <div class="col-md-12">
+                                        <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description',$note->description) }}" required autocomplete="description" autofocus>
+
+                                        @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Update') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            @endif
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
 
             <!-- Pie Chart -->
             <div class="col-xl-4 col-lg-5">
@@ -268,10 +359,14 @@
                             </div>
                         </div>
                     </div>
+
+
                     <!-- Card Body -->
                     <div class="card-body">
                         <div class="chart-pie pt-4 pb-2">
-                            <canvas id="myPieChart"></canvas>
+                            <canvas id="myPieChart">
+
+                            </canvas>
                         </div>
                         <div class="mt-4 text-center small">
                                         <span class="mr-2">

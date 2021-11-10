@@ -2,17 +2,23 @@
 
 @section('content')
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<div class="input-group m-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Kerko</span>
+    </div>
+{{--    <div class="col-xs-4">--}}
+        <input class="form-control col-sm-2" id="myInput" type="text">
+{{--    </div>--}}
+
+</div>
+
+    <br>
+    <br>
     <div class="container-fluid">
-        <div class="form-row align-items-center">
-            <div class="col">
-                <input type="search" name="search" class="form-control mb-2" id="inlineFormInput" placeholder="Jane Doe">
-            </div>
-            <div class="col">
-                <button type="submit" class="btn btn-primary mb-2">Search</button>
-            </div>
-        </div>
-        <div class="table-responsive">
+
+ <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <th >#Id</th>
                 <th>Emri</th>
@@ -23,7 +29,9 @@
                 @foreach($months as $month)
                     <th>{{$month}}</th>
                 @endforeach
+
                 @foreach($clients as $client)
+                    <tbody id="myTable">
                     <tr class="text-dark p-2">
                         <td>{{$client->id}}</td>
                         <td>{{$client->first_name}}</td>
@@ -33,14 +41,16 @@
                         <td>{{$client->ashensor + $client->mbeturinat + $client->internet }} Euro</td>
 
                         @foreach($monthPositions as $monthPosition)
+{{--                            @if (Auth::user()->hasRole('user')) custom-pe-none-confirm-td  @endif--}}
 
 
                         <td class="@foreach($invoices as $invoice)
-                            @if($invoice->month_id == $monthPosition && $invoice->client_id == $client->id) bg-success  @endif
-                        @endforeach">
+                            @if($invoice->month_id == $monthPosition && $invoice->client_id == $client->id) bg-success custom-pe-none-confirm-td  @endif
+
+                        @endforeach" >
 
                                        <div class="d-inline">
-                                           <a  href="{{url('generate-invoice/'.$client->id.'/'.$monthPosition)}}">View</a>
+                                           <a target="_blank"  href="{{url('generate-invoice/'.$client->id.'/'.$monthPosition)}}">View</a>
                                        </div>
                                 <div class="dropdown no-arrow d-inline">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -59,6 +69,7 @@
                         @endforeach
 
                     </tr>
+                </tbody>
                 @endforeach
 
             </table>
@@ -66,6 +77,18 @@
     </div>
 
 
-
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 
 @endsection
+
+
+

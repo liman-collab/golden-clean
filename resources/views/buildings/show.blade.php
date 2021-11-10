@@ -15,7 +15,7 @@
                     <tr>
                         <td class="p-2">{{$gate->id}}</td>
                         <td class="p-2">{{$gate->name}}</td>
-                        <td><a href="{{route('showclients.show', $gate->id)}}" class="text-primary">View</a></td>
+                        <td><a href="{{route('showclients.show', $gate->id)}}"  class="text-primary">View</a></td>
                     </tr>
 
                 @endforeach

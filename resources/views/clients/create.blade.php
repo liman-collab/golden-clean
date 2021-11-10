@@ -219,15 +219,15 @@
 
                                 <hr>
 
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="1" id="paid" name="paid">
-                                        <label class="form-check-label" for="paid">
-                                            E Paguar
-                                        </label>
-                                    </div>
+{{--                                <div class="form-group">--}}
+{{--                                    <div class="form-check">--}}
+{{--                                        <input class="form-check-input" type="checkbox" value="1" id="paid" name="paid">--}}
+{{--                                        <label class="form-check-label" for="paid">--}}
+{{--                                            E Paguar--}}
+{{--                                        </label>--}}
+{{--                                    </div>--}}
 
-                                </div>
+{{--                                </div>--}}
 
                             </div>
 

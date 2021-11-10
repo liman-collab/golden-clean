@@ -2,24 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
 use App\Models\Invoice;
-use Carbon\Carbon;
+use App\Models\Month;
+use App\Models\Payment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class OnlyOneClientController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
+        $invoices = Invoice::all();
+
+        $months = Month::select(
+
+            "months.id",
+            "invoices.month_id",
 
 
+        )->join("invoices", "months.id", "=", "invoices.month_id")
 
+            ->get();
+
+//        dd($months);
+
+       return view('payments.index',compact('invoices'));
     }
 
     /**
@@ -51,22 +62,7 @@ class OnlyOneClientController extends Controller
      */
     public function show($id)
     {
-        $clients = Client::where('gate_id',$id)->get();
-        $currentTimeFirst = Carbon::now()->format('m/d/Y');
-        $currentTime = Carbon::now();
-        $monthOnly = $currentTime->month;
-        $months = [];
-        for ($m=1; $m<=12; $m++) {
-            $months[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
-        }
-        $monthPositions = array_keys($months);
-
-        $invoices = Invoice::all();
-
-
-
-
-        return view('showclients.show',compact('id','clients','currentTime','months','monthOnly','monthPositions','currentTimeFirst','invoices'));
+        //
     }
 
     /**

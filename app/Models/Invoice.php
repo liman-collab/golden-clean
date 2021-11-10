@@ -10,4 +10,11 @@ class Invoice extends Model
     use HasFactory;
 
     protected $fillable = ['client_id','month_id'];
+
+    public function client(){
+        return $this->belongsTo(Client::class);
+    }
+//    public function months(){
+//        return $this->hasMany(Month::class);
+//    }
 }

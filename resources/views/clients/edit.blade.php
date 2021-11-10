@@ -15,8 +15,8 @@
 
                 {{--                <td><a href="{{route('clients.edit', $client->id, $client->building_id)}}" class="btn btn-success">Edit</a></td>--}}
 
-                <a href="{{url('generate-invoice/'.$client->id)}}" target="_blank" type="button" class="{{empty($client->paid)  ? 'd-none' : 'd-sm-inline-block btn btn-sm btn-primary shadow-sm'}}"><i
-                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+{{--                <a href="{{url('generate-invoice/'.$client->id)}}" target="_blank" type="button" class="{{empty($client->paid)  ? 'd-none' : 'd-sm-inline-block btn btn-sm btn-primary shadow-sm'}}"><i--}}
+{{--                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>--}}
             </div>
 
 
@@ -222,15 +222,15 @@
                                     <hr>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="1"
-                                               {{!empty($client->paid)  ? 'checked' : ''}} id="paid" name="paid">
-                                        <label class="form-check-label" for="paid">
-                                            E Paguar
-                                        </label>
-                                    </div>
-                                </div>
+{{--                                <div class="form-group">--}}
+{{--                                    <div class="form-check">--}}
+{{--                                        <input class="form-check-input" type="checkbox" value="1"--}}
+{{--                                               {{!empty($client->paid)  ? 'checked' : ''}} id="paid" name="paid">--}}
+{{--                                        <label class="form-check-label" for="paid">--}}
+{{--                                            E Paguar--}}
+{{--                                        </label>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                         </div>
 

@@ -10,6 +10,7 @@ use App\Models\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Table;
 use phpDocumentor\Reflection\Types\Compound;
 use Symfony\Component\Console\Input\Input;
 
@@ -21,7 +22,7 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $clients = Client::all();
@@ -158,4 +159,7 @@ class ClientController extends Controller
         $client->delete();
         return redirect()->route('clients.index')->with('message','Banori u shlye me sukses');
     }
+
+
+
 }

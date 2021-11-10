@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
-use App\Models\Invoice;
-use Carbon\Carbon;
+use App\Http\Requests\NotesStoreRequest;
+use App\Models\Note;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class OnlyOneClientController extends Controller
+class NotesContoller extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
-
-
+//        $notes = Note::all();
+//        return view('dashboard',compact('notes'));
     }
 
     /**
@@ -38,9 +35,13 @@ class OnlyOneClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NotesStoreRequest $request)
     {
-        //
+        Note::create([
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('dashboard')->with('message','Shenimi u kirjua me sukses');
     }
 
     /**
@@ -51,22 +52,7 @@ class OnlyOneClientController extends Controller
      */
     public function show($id)
     {
-        $clients = Client::where('gate_id',$id)->get();
-        $currentTimeFirst = Carbon::now()->format('m/d/Y');
-        $currentTime = Carbon::now();
-        $monthOnly = $currentTime->month;
-        $months = [];
-        for ($m=1; $m<=12; $m++) {
-            $months[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
-        }
-        $monthPositions = array_keys($months);
-
-        $invoices = Invoice::all();
-
-
-
-
-        return view('showclients.show',compact('id','clients','currentTime','months','monthOnly','monthPositions','currentTimeFirst','invoices'));
+        //
     }
 
     /**
@@ -77,7 +63,7 @@ class OnlyOneClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('dashboard');
     }
 
     /**
@@ -87,9 +73,15 @@ class OnlyOneClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NotesStoreRequest $request,Note $note)
     {
-        //
+        $note->update([
+            'id' => $request->id,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('dashboard')->with('message','Shenimi u azhornua me sukses');
+
     }
 
     /**
@@ -98,8 +90,9 @@ class OnlyOneClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Note $note)
     {
-        //
+        $note->delete();
+        return redirect()->route('dashboard')->with('message','Shenimi u shlye me sukses');
     }
 }
