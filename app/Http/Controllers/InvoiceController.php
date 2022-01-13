@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\InvoiceStoreRequest;
+use App\Models\BackUpInvoice;
 use App\Models\Building;
 use App\Models\Client;
 use App\Models\Invoice;
@@ -63,12 +64,24 @@ class InvoiceController extends Controller
 
     public function saveInvoice($client_id,$month_id){
 
+
+        $clients = Client::where('id',$client_id)->get();
+
         Invoice::create([
             'client_id' => $client_id,
-            'month_id'=>$month_id
+            'month_id'=>$month_id,
+            'service_price'=> $clients->sum('payment')
         ]);
+
         return back();
 
     }
+
+//    public function deleteInvoice(Invoice $invoice){
+//        $invoice->delete();
+//        return back();
+////    dd('deleted');
+//    }
+
 
 }

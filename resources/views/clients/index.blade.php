@@ -40,8 +40,8 @@
                         <thead>
                         <tr>
                             <th>#Id</th>
-                            <th>Emri</th>
-                            <th>Mbiemri</th>
+                            <th>Emri dhe Mbiemri</th>
+{{--                            <th>Mbiemri</th>--}}
                             <th>Adresa</th>
                             <th>Telefoni</th>
                             <th>Qyteti</th>
@@ -51,15 +51,15 @@
                             <th>Fillimi i muajit</th>
                             <th>Fundi i muajit</th>
                             <th>Pagesat</th>
-                            {{--                            <th>Total</th>--}}
-                            <th>Manage</th>
+
+                            @if(Auth::user()->hasRole('admin'))     <th>Manage</th>@endif
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th>#Id</th>
-                            <th>Emri</th>
-                            <th>Mbiemri</th>
+                            <th>Emri dhe Mbiemri</th>
+{{--                            <th>Mbiemri</th>--}}
                             <th>Adresa</th>
                             <th>Telefoni</th>
 
@@ -71,15 +71,15 @@
                             <th>Fundi i muajit</th>
                             <th>Pagesat</th>
 
-                            <th>Manage</th>
+                            @if(Auth::user()->hasRole('admin'))  <th>Manage</th> @endif
                         </tr>
                         </tfoot>
                         <tbody  id="myTable">
                         @foreach($clients as $client)
                             <tr class="text-dark" >
                                 <td>{{$client->id}}</td>
-                                <td>{{$client->first_name}}</td>
-                                <td>{{$client->last_name}}</td>
+                                <td>{{$client->name}}</td>
+{{--                                <td>{{$client->last_name}}</td>--}}
                                 <td>{{$client->address}}</td>
                                 <td>{{$client->phone}}</td>
 
@@ -89,15 +89,18 @@
                                 <td>{{$client->packages}}</td>
                                 <td>{{$client->start_month}}</td>
                                 <td>{{$client->end_month}}</td>
-                                <td>{{$client->ashensor + $client->mbeturinat + $client->internet }} Euro</td>
-                                {{--                                                    <td>{{$client->payment}} Euro</td>--}}
-                                <td><a href="{{route('clients.edit', $client->id, $client->building_id)}}" class="btn btn-success">Edit</a></td>
+                                <td>{{$client->mirembajtje13 + $client->mirembajtje14
+ + $client->mirembajtje15+$client->mirembajtje10 + $client->internet
+ + $client->tv+$client->parking }} Euro</td>
+
+                                @if(Auth::user()->hasRole('admin'))
+                                    <td><a href="{{route('clients.edit', $client->id, $client->building_id)}}" class="btn btn-success">Edit</a></td> @endif
                             </tr>
                         @endforeach
 
                         </tbody>
                     </table>
-                    {{--                    <h1>{{$total}}</h1>--}}
+
                 </div>
             </div>
         </div>

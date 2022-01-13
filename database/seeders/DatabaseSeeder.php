@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(LaratrustSeeder::class);
+//            Client::factory(100)->create();
+
     }
 }

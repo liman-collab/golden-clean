@@ -7,6 +7,8 @@ use App\Http\Requests\ClientStoreRequest;
 use App\Models\Building;
 use App\Models\Client;
 use App\Models\Gate;
+use App\Models\Invoice;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -58,12 +60,13 @@ class ClientController extends Controller
     {
 
 
-            $total = $request->ashensor + $request->mbeturinat + $request->internet;
+            $total = $request->mirembajtje13 + $request->mirembajtje14 + $request->mirembajtje15 +
+                $request->mirembajtje10 + $request->internet + $request->tv + $request->parking;
 
-
-            $client = Client::create([
-                'last_name' => $request->last_name,
-                'first_name' => $request->first_name,
+//        dd($total);
+                 Client::create([
+//                'last_name' => $request->last_name,
+                'name' => $request->name,
                 'address' => $request->address,
                 'phone' => $request->phone,
                 'city_name' => $request->city_name,
@@ -72,9 +75,13 @@ class ClientController extends Controller
                 'gate_id' => $request->gate_id,
                 'packages' => implode(' | ', $request->packages),
                 'end_month' => $request->end_month,
-                'ashensor' => $request->ashensor,
-                'mbeturinat' => $request->mbeturinat,
+                'mirembajtje13' => $request->mirembajtje13,
+                'mirembajtje14' => $request->mirembajtje14,
+                'mirembajtje15' => $request->mirembajtje15,
+                'mirembajtje10' => $request->mirembajtje10,
                 'internet' => $request->internet,
+                'tv' => $request->tv,
+                'parking' => $request->parking,
                 'payment' => $total,
                 'paid' => $request->paid
             ]);
@@ -123,29 +130,37 @@ class ClientController extends Controller
      */
     public function update(ClientStoreRequest $request,Client $client)
     {
-        $total = $request->ashensor + $request-> mbeturinat + $request->internet;
 
-        $client->update([
-            'id' => $request->id,
-            'last_name' => $request->last_name,
-            'first_name' =>  $request->first_name,
-            'address' =>  $request->address,
-            'phone' =>  $request->phone,
-            'city_name' =>  $request->city_name,
-            'start_month' =>  $request->start_month,
-            'building_id' =>  $request->building_id,
-            'gate_id' =>  $request->gate_id,
-            'packages' =>  implode(' | ', $request->packages),
-            'end_month' =>  $request->end_month,
-            'ashensor' => $request->ashensor,
-            'mbeturinat' =>  $request->mbeturinat,
-            'internet' => $request->internet,
-            'payment'=>$total,
-            'paid' => $request->paid
-        ]);
 
-        return redirect()->route('clients.index')->with('message','Banori u azhornua me sukses');
+        $total = $request->mirembajtje13 + $request->mirembajtje14 + $request->mirembajtje15 +
+            $request->mirembajtje10 + $request->internet + $request->tv + $request->parking;
 
+
+
+            $client->update([
+                'id' => $request->id,
+                'name' => $request->name,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'city_name' => $request->city_name,
+                'start_month' => $request->start_month,
+                'building_id' => $request->building_id,
+                'gate_id' => $request->gate_id,
+                'packages' => implode(' | ', $request->packages),
+                'end_month' => $request->end_month,
+                'mirembajtje13' => $request->mirembajtje13,
+                'mirembajtje14' => $request->mirembajtje14,
+                'mirembajtje15' => $request->mirembajtje15,
+                'mirembajtje10' => $request->mirembajtje10,
+                'internet' => $request->internet,
+                'tv' => $request->tv,
+                'parking' => $request->parking,
+                'payment' => $total,
+                'paid' => $request->paid
+            ]);
+
+
+          return redirect()->route('clients.index')->with('message', 'Banori u azhornua me sukses');
     }
 
     /**
@@ -156,7 +171,10 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
+//        Invoice::where('client_id',$client->id)->delete();
         $client->delete();
+
+
         return redirect()->route('clients.index')->with('message','Banori u shlye me sukses');
     }
 

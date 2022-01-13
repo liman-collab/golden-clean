@@ -6,15 +6,15 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Invoice extends Model
+class BackUpInvoice extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['client_id','month_id','service_price'];
-
-    public function client(){
-        return $this->belongsTo(Client::class);
-    }
+    protected $fillable = ['client_id','month_id'];
+//
+//    public function client(){
+//        return $this->belongsTo(Client::class);
+//    }
 
     public function setCreatedAtAttribute( $value ) {
         $this->attributes['created_at'] = (new Carbon($value))->format('Y-m-d');

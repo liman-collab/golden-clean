@@ -193,7 +193,7 @@
         <td class="border-0"></td>
         <td class="px-0">
             <p class="buyer-name">
-                Emri Bleresit:  <strong>{{$clientOrders->first_name}} {{$clientOrders->last_name}}</strong>
+                Emri Bleresit:  <strong>{{$clientOrders->name}} </strong>
             </p>
 
             @if($clientOrders->address)
@@ -241,24 +241,44 @@
     </tr>
     </thead>
     <tbody>
-    @if($clientOrders->mbeturinat)
+    @if($clientOrders->mirembajtje13)
         <tr>
 
-            <td class="pl-0">Mbeturinat</td>
+            <td class="pl-0">Mirembajtja 13</td>
             <td class="text-center">1</td>
             <td class="text-right">
-                {{$clientOrders->mbeturinat}} Euro
+                {{$clientOrders->mirembajtje13}} Euro
             </td>
 
         </tr>
     @endif
-    @if($clientOrders->ashensor)
+    @if($clientOrders->mirembajtje14)
         <tr>
-            <td class="pl-0">Ashensori</td>
+            <td class="pl-0">Mirembajtja 14</td>
             <td class="text-center">1</td>
             <td class="text-right">
-                {{$clientOrders->ashensor}} Euro
+                {{$clientOrders->mirembajtje14}} Euro
             </td>
+        </tr>
+    @endif
+    @if($clientOrders->mirembajtje15)
+        <tr>
+            <td class="pl-0">Mirembajtja 15</td>
+            <td class="text-center">1</td>
+            <td class="text-right">
+                {{$clientOrders->mirembajtje15}} Euro
+            </td>
+
+        </tr>
+    @endif
+    @if($clientOrders->mirembajtje10)
+        <tr>
+            <td class="pl-0">Mirembajtja 10</td>
+            <td class="text-center">1</td>
+            <td class="text-right">
+                {{$clientOrders->mirembajtje10}} Euro
+            </td>
+
         </tr>
     @endif
     @if($clientOrders->internet)
@@ -271,11 +291,33 @@
 
         </tr>
     @endif
+    @if($clientOrders->tv)
+        <tr>
+            <td class="pl-0">TV</td>
+            <td class="text-center">1</td>
+            <td class="text-right">
+                {{$clientOrders->tv}} Euro
+            </td>
+
+        </tr>
+    @endif
+    @if($clientOrders->parking)
+        <tr>
+            <td class="pl-0">Parking</td>
+            <td class="text-center">1</td>
+            <td class="text-right">
+                {{$clientOrders->parking}} Euro
+            </td>
+
+        </tr>
+    @endif
     <tr>
         <td class="pl-0"></td>
         <td class="text-center">Tax 15%</td>
         <td class="text-right">
-            {{(($clientOrders->mbeturinat + $clientOrders->ashensor + $clientOrders->internet) * 15) / 100 }} Euro
+            {{(($clientOrders->mirembajtje13 + $clientOrders->mirembajtje14
+ + $clientOrders->mirembajtje15+$clientOrders->mirembajtje10 + $clientOrders->internet
+ + $clientOrders->tv+ $clientOrders->parking) * 15) / 100 }} Euro
 
         </td>
     </tr>
@@ -283,7 +325,9 @@
         <td class="pl-0"></td>
         <td class="text-center">Total</td>
         <td class="text-right">
-            {{($clientOrders->mbeturinat + $clientOrders->ashensor + $clientOrders->internet)}} Euro
+            {{($clientOrders->mirembajtje13 + $clientOrders->mirembajtje14
+ + $clientOrders->mirembajtje15+$clientOrders->mirembajtje10 + $clientOrders->internet
+ + $clientOrders->tv+ $clientOrders->parking)}} Euro
         </td>
     </tr>
     </tbody>
@@ -337,7 +381,7 @@
         <td class="border-0"></td>
         <td class="px-0">
             <p class="buyer-name">
-                Emri Bleresit:  <strong>{{$clientOrders->first_name}} {{$clientOrders->last_name}}</strong>
+                Emri Bleresit:  <strong>{{$clientOrders->name}} </strong>
             </p>
 
             @if($clientOrders->address)
@@ -385,24 +429,45 @@
     </tr>
     </thead>
     <tbody>
-    @if($clientOrders->mbeturinat)
+
+    @if($clientOrders->mirembajtje13)
         <tr>
 
-            <td class="pl-0">Mbeturinat</td>
+            <td class="pl-0">Mirembajtja 13</td>
             <td class="text-center">1</td>
             <td class="text-right">
-                {{$clientOrders->mbeturinat}} Euro
+                {{$clientOrders->mirembajtje13}} Euro
             </td>
 
         </tr>
     @endif
-    @if($clientOrders->ashensor)
+    @if($clientOrders->mirembajtje14)
         <tr>
-            <td class="pl-0">Ashensori</td>
+            <td class="pl-0">Mirembajtja 14</td>
             <td class="text-center">1</td>
             <td class="text-right">
-                {{$clientOrders->ashensor}} Euro
+                {{$clientOrders->mirembajtje14}} Euro
             </td>
+        </tr>
+    @endif
+    @if($clientOrders->mirembajtje15)
+        <tr>
+            <td class="pl-0">Mirembajtja 15</td>
+            <td class="text-center">1</td>
+            <td class="text-right">
+                {{$clientOrders->mirembajtje15}} Euro
+            </td>
+
+        </tr>
+    @endif
+    @if($clientOrders->mirembajtje10)
+        <tr>
+            <td class="pl-0">Mirembajtja 10</td>
+            <td class="text-center">1</td>
+            <td class="text-right">
+                {{$clientOrders->mirembajtje10}} Euro
+            </td>
+
         </tr>
     @endif
     @if($clientOrders->internet)
@@ -415,11 +480,33 @@
 
         </tr>
     @endif
+    @if($clientOrders->tv)
+        <tr>
+            <td class="pl-0">TV</td>
+            <td class="text-center">1</td>
+            <td class="text-right">
+                {{$clientOrders->tv}} Euro
+            </td>
+
+        </tr>
+    @endif
+    @if($clientOrders->parking)
+        <tr>
+            <td class="pl-0">Parking</td>
+            <td class="text-center">1</td>
+            <td class="text-right">
+                {{$clientOrders->parking}} Euro
+            </td>
+
+        </tr>
+    @endif
     <tr>
         <td class="pl-0"></td>
         <td class="text-center">Tax 15%</td>
         <td class="text-right">
-            {{(($clientOrders->mbeturinat + $clientOrders->ashensor + $clientOrders->internet) * 15) / 100 }} Euro
+            {{(($clientOrders->mirembajtje13 + $clientOrders->mirembajtje14
+ + $clientOrders->mirembajtje15+$clientOrders->mirembajtje10 + $clientOrders->internet
+ + $clientOrders->tv+ $clientOrders->parking)* 15) / 100 }} Euro
 
         </td>
     </tr>
@@ -427,7 +514,9 @@
         <td class="pl-0"></td>
         <td class="text-center">Total</td>
         <td class="text-right">
-            {{($clientOrders->mbeturinat + $clientOrders->ashensor + $clientOrders->internet)}} Euro
+            {{($clientOrders->mirembajtje13 + $clientOrders->mirembajtje14
+ + $clientOrders->mirembajtje15+$clientOrders->mirembajtje10 + $clientOrders->internet
+ + $clientOrders->tv+ $clientOrders->parking)}} Euro
         </td>
     </tr>
     </tbody>

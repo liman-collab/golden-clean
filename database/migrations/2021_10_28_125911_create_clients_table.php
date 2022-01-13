@@ -15,8 +15,8 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('last_name');
-            $table->string('first_name');
+            $table->string('name');
+//            $table->string('last_name');
             $table->string('address');
             $table->integer('phone');
             $table->string('city_name')->nullable();
@@ -24,9 +24,13 @@ class CreateClientsTable extends Migration
             $table->foreignId('gate_id')->constrained()->nullable();
             $table->string('packages')->nullable();
             $table->integer('payment')->nullable();
-            $table->integer('ashensor')->nullable();
-            $table->integer('mbeturinat')->nullable();
+            $table->integer('mirembajtje13')->nullable();
+            $table->integer('mirembajtje14')->nullable();
+            $table->integer('mirembajtje15')->nullable();
+            $table->integer('mirembajtje10')->nullable();
             $table->integer('internet')->nullable();
+            $table->integer('tv')->nullable();
+            $table->integer('parking')->nullable();
             $table->boolean('paid')->nullable();
             $table->date('start_month')->nullable();
             $table->date('end_month')->nullable();

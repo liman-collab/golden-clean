@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class OnlyOneClientController extends Controller
 {
@@ -17,7 +18,6 @@ class OnlyOneClientController extends Controller
      */
     public function index(Request $request)
     {
-
 
 
     }
@@ -49,13 +49,14 @@ class OnlyOneClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,Request $request)
     {
         $clients = Client::where('gate_id',$id)->get();
         $currentTimeFirst = Carbon::now()->format('m/d/Y');
         $currentTime = Carbon::now();
+
         $monthOnly = $currentTime->month;
-        $months = [];
+        $months = []; // i shfaq mujt ne <th>
         for ($m=1; $m<=12; $m++) {
             $months[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
         }
@@ -64,9 +65,14 @@ class OnlyOneClientController extends Controller
         $invoices = Invoice::all();
 
 
+        $name = Session::get('name');
+        Session::forget('name');
+//        dd($name);
 
 
-        return view('showclients.show',compact('id','clients','currentTime','months','monthOnly','monthPositions','currentTimeFirst','invoices'));
+        return view('showclients.show',compact('id','clients','currentTime','months','monthOnly',
+            'monthPositions','currentTimeFirst','invoices','name'));
+
     }
 
     /**
@@ -98,8 +104,10 @@ class OnlyOneClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Client $client)
     {
-        //
+//        dd($client);
+//        $client->delete();
+//        return redirect()->back();
     }
 }

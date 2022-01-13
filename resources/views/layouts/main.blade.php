@@ -12,10 +12,21 @@
     <title>Golden Clean</title>
 
     <!-- Custom fonts for this template-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.min.js"
+            integrity="sha512-Rc24PGD2NTEGNYG/EMB+jcFpAltU9svgPcG/73l1/5M6is6gu3Vo1uVqyaNWf/sXfKyI0l240iwX9wpm6HE/Tg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"
+            integrity="sha512-P2Z/b+j031xZuS/nr8Re8dMwx6pNIexgJ7YqcFWKIqCdbjynk4kuX/GrqpQWEcI94PRCyfbUQrjRcWMi7btb0g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-min.css')}}" rel="stylesheet">
@@ -27,6 +38,8 @@
 </head>
 
 <body id="page-top">
+
+
 
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -57,10 +70,7 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-        <!-- Heading -->
-{{--        <div class="sidebar-heading">--}}
-{{--            Interface--}}
-{{--        </div>--}}
+
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
@@ -69,72 +79,31 @@
                 <i class="fas fa-fw fa-plus"></i>
                 <span>Krijo</span>
             </a>
+
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+
+
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Krijo:</h6>
                     <a class="collapse-item" href="{{route('clients.create')}}">Banorin</a>
+                    @if (Auth::user()->hasRole('admin'))
                     <a class="collapse-item" href="{{route('buildings.create')}}">Banesen</a>
+                    @endif
                     <a class="collapse-item" href="{{route('damages.create')}}">Prishjen</a>
+                    @if (Auth::user()->hasRole('admin'))
                     <a class="collapse-item"  href="{{route('gates.create')}}">Hyrjen</a>
+                    @endif
                 </div>
             </div>
         </li>
 
 
-        <!-- Nav Item - Utilities Collapse Menu -->
-{{--        <li class="nav-item">--}}
-{{--            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"--}}
-{{--               aria-expanded="true" aria-controls="collapseUtilities">--}}
-{{--                <i class="fas fa-fw fa-wrench"></i>--}}
-{{--                <span>Utilities</span>--}}
-{{--            </a>--}}
-{{--            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"--}}
-{{--                 data-parent="#accordionSidebar">--}}
-{{--                <div class="bg-white py-2 collapse-inner rounded">--}}
-{{--                    <h6 class="collapse-header">Custom Utilities:</h6>--}}
-{{--                    <a class="collapse-item" href="utilities-color.html">Colors</a>--}}
-{{--                    <a class="collapse-item" href="utilities-border.html">Borders</a>--}}
-{{--                    <a class="collapse-item" href="utilities-animation.html">Animations</a>--}}
-{{--                    <a class="collapse-item" href="utilities-other.html">Other</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </li>--}}
+
 
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-        <!-- Heading -->
-{{--        <div class="sidebar-heading">--}}
-{{--            Addons--}}
-{{--        </div>--}}
 
-        <!-- Nav Item - Pages Collapse Menu -->
-{{--        <li class="nav-item">--}}
-{{--            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"--}}
-{{--               aria-expanded="true" aria-controls="collapsePages">--}}
-{{--                <i class="fas fa-fw fa-folder"></i>--}}
-{{--                <span>Pages</span>--}}
-{{--            </a>--}}
-{{--            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">--}}
-{{--                <div class="bg-white py-2 collapse-inner rounded">--}}
-{{--                    <h6 class="collapse-header">Login Screens:</h6>--}}
-{{--                    <a class="collapse-item" href="login.html">Login</a>--}}
-{{--                    <a class="collapse-item" href="register.html">Register</a>--}}
-{{--                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>--}}
-{{--                    <div class="collapse-divider"></div>--}}
-{{--                    <h6 class="collapse-header">Other Pages:</h6>--}}
-{{--                    <a class="collapse-item" href="404.html">404 Page</a>--}}
-{{--                    <a class="collapse-item" href="blank.html">Blank Page</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </li>--}}
-
-        <!-- Nav Item - Charts -->
-{{--        <li class="nav-item">--}}
-{{--            <a class="nav-link" href="charts.html">--}}
-{{--                <i class="fas fa-fw fa-chart-area"></i>--}}
-{{--                <span>Charts</span></a>--}}
-{{--        </li>--}}
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
@@ -155,13 +124,13 @@
                 <span>Pagesat</span></a>
         </li>
 
-        {{--        @if(Auth::user()->hasRole('admin'))--}}
+                @if(Auth::user()->hasRole('admin'))
         <li class="nav-item">
             <a class="nav-link" href="{{route('gates.index')}}">
                 <i class="fas fa-fw fa-building"></i>
                 <span>Hyrjet e Banesave</span></a>
         </li>
-        {{--        @endif--}}
+                @endif
         <li class="nav-item">
             <a class="nav-link" href="{{route('damages.index')}}">
                 <i class="fas fa-fw fa-cog"></i>
@@ -184,7 +153,11 @@
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
+        @if(session()->has('message2'))
+            <div class="alert alert-danger">
+                {{session('message2')}}
+            </div>
+    @endif
         <!-- Main Content -->
         <div id="content">
 
@@ -195,6 +168,33 @@
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
+                <form method="POST" action="{{route('searchClient')}}"
+                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    @csrf
+                    <div class="input-group">
+                        <input type="text" id="clientName" name="clientName" class="form-control typeahead" placeholder="Search for..."
+                               aria-label="Search" aria-describedby="basic-addon2">
+
+                    <div class="input-group-append">
+                        <input type="submit" class="btn btn-primary" value="Search">
+                    </div>
+                    </div>
+                </form>
+
+
+                <script type="text/javascript">
+
+                    url = "{{route('get-result')}}";
+
+                    $('input.typeahead').typeahead({
+                        source:function (value,process){
+                            return $.get(url,{value:value},function (data){
+                                return process(data);
+                            });
+                        }
+                    });
+
+                </script>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -222,6 +222,11 @@
                             </form>
                         </div>
                     </li>
+
+
+
+
+
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
@@ -282,7 +287,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
+                    <span>Copyright &copy; Dimensio Agency  2022</span>
                 </div>
             </div>
         </footer>

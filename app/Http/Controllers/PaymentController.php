@@ -6,6 +6,7 @@ use App\Models\Invoice;
 use App\Models\Month;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -97,5 +98,21 @@ class PaymentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request){
+        $fromDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+
+
+        $reports = Invoice::where('created_at','>=',$fromDate)->where('created_at','<=',$toDate)->get();
+
+        if ($reports->isEmpty()){
+            return redirect()->route('payments.index')->with('message','Nuk gjendet asnje pages me datat e specifikuara');
+        }
+
+        return view('payments.index',compact('reports'));
+
+
     }
 }

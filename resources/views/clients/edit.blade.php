@@ -46,12 +46,12 @@
 
 
                             <div class="form-group">
-                                <label for="first_name" class="col-md-4 col-form-label text-md-left">{{ __('Emri') }}</label>
+                                <label for="name" class="col col-form-label text-md-left">{{ __('Emri dhe Mbiemri') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name', $client->first_name) }}" required autocomplete="first_name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $client->name) }}" required autocomplete="name" autofocus>
 
-                                    @error('first_name')
+                                    @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -61,19 +61,19 @@
 
 
 
-                            <div class="form-group">
-                                <label for="first_name" class="col-md-4 col-form-label text-md-left">{{ __('Mbiemri') }}</label>
+{{--                            <div class="form-group">--}}
+{{--                                <label for="last_name" class="col-md-4 col-form-label text-md-left">{{ __('Mbiemri') }}</label>--}}
 
-                                <div class="col-md-12">
-                                    <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name', $client->last_name) }}" required autocomplete="last_name" autofocus>
+{{--                                <div class="col-md-12">--}}
+{{--                                    <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name', $client->last_name) }}" required autocomplete="last_name" autofocus>--}}
 
-                                    @error('last_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
+{{--                                    @error('last_name')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="form-group">
                                 <label for="address" class="col-md-4 col-form-label text-md-left">{{ __('Adresa') }}</label>
 
@@ -157,19 +157,35 @@
                                 <script type="text/javascript">
 
                                     $(function() {
-                                        var $packages = $("#ashensor");
-                                        var $ashensor = $("input[name='ashensor']");
+                                        var $packages = $("#mirembajtje13");
+                                        var $mirembajtje13 = $("input[name='mirembajtje13']");
 
                                         $packages.on('change', function() {
-                                            $ashensor.val(this.checked ? '8' : null);
+                                            $mirembajtje13.val(this.checked ? '13' : null);
                                         });
                                     });
                                     $(function() {
-                                        var $packages = $("#mbeturinat");
-                                        var $mbeturinat = $("input[name='mbeturinat']");
+                                        var $packages = $("#mirembajtje14");
+                                        var $mirembajtje14 = $("input[name='mirembajtje14']");
 
                                         $packages.on('change', function() {
-                                            $mbeturinat.val(this.checked ? '9' : null);
+                                            $mirembajtje14.val(this.checked ? '14' : null);
+                                        });
+                                    });
+                                    $(function() {
+                                        var $packages = $("#mirembajtje15");
+                                        var $mirembajtje15 = $("input[name='mirembajtje15']");
+
+                                        $packages.on('change', function() {
+                                            $mirembajtje15.val(this.checked ? '15' : null);
+                                        });
+                                    });
+                                    $(function() {
+                                        var $packages = $("#mirembajtje10");
+                                        var $mirembajtje10 = $("input[name='mirembajtje10']");
+
+                                        $packages.on('change', function() {
+                                            $mirembajtje10.val(this.checked ? '10' : null);
                                         });
                                     });
                                     $(function() {
@@ -180,6 +196,23 @@
                                             $internet.val(this.checked ? '10' : null);
                                         });
                                     });
+                                    $(function() {
+                                        var $packages = $("#tv");
+                                        var $tv = $("input[name='tv']");
+
+                                        $packages.on('change', function() {
+                                            $tv.val(this.checked ? '10' : null);
+                                        });
+                                    });
+                                    $(function() {
+                                        var $packages = $("#parking");
+                                        var $parking = $("input[name='parking']");
+
+                                        $packages.on('change', function() {
+                                            $parking.val(this.checked ? '3' : null);
+                                        });
+                                    });
+
 
                                     $('form').bind('submit', function () {
                                         $(this).find(':input').prop('disabled', false);
@@ -191,21 +224,39 @@
 
                                     {{--                                <div class="col-md-12">--}}
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="ashensor"
-                                               {{!empty($client->ashensor)  ? 'checked' : ''}} id="ashensor" name="packages[]">
-                                        <input type="hidden" name="ashensor" value="{{$client->ashensor}}">
-                                        <label class="form-check-label" for="ashensor">
-                                            Ashensori
+                                        <input class="form-check-input" type="checkbox" value="mirembajtje13"
+                                               {{!empty($client->mirembajtje13)  ? 'checked' : ''}} id="mirembajtje13" name="packages[]">
+                                        <input type="hidden" name="mirembajtje13" value="{{$client->mirembajtje13}}">
+                                        <label class="form-check-label" for="mirembajtje13">
+                                            Mirembajtje 13
                                         </label>
 
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="mbeturinat" id="mbeturinat"
-                                               {{!empty($client->mbeturinat)  ? 'checked' : ''}}
+                                        <input class="form-check-input" type="checkbox" value="mirembajtje14" id="mirembajtje14"
+                                               {{!empty($client->mirembajtje14)  ? 'checked' : ''}}
                                                name="packages[]">
-                                        <input type="hidden" name="mbeturinat" value="{{$client->mbeturinat}}">
-                                        <label class="form-check-label" for="mbeturinat">
-                                            Mbeturinat
+                                        <input type="hidden" name="mirembajtje14" value="{{$client->mirembajtje14}}">
+                                        <label class="form-check-label" for="mirembajtje14">
+                                            Mirembajtje 14
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="mirembajtje15" id="mirembajtje15"
+                                               {{!empty($client->mirembajtje15)  ? 'checked' : ''}}
+                                               name="packages[]">
+                                        <input type="hidden" name="mirembajtje15" value="{{$client->mirembajtje15}}">
+                                        <label class="form-check-label" for="mirembajtje15">
+                                            Mirembajtje 15
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="mirembajtje10" id="mirembajtje10"
+                                               {{!empty($client->mirembajtje10)  ? 'checked' : ''}}
+                                               name="packages[]">
+                                        <input type="hidden" name="mirembajtje10" value="{{$client->mirembajtje10}}">
+                                        <label class="form-check-label" for="mirembajtje10">
+                                            Mirembajtje 10
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -215,6 +266,24 @@
                                         <input type="hidden" name="internet" value="{{$client->internet}}">
                                         <label class="form-check-label" for="internet">
                                             Interneti
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="tv" id="tv"
+                                               {{!empty($client->tv)  ? 'checked' : ''}}
+                                               name="packages[]">
+                                        <input type="hidden" name="tv" value="{{$client->tv}}">
+                                        <label class="form-check-label" for="tv">
+                                            TV
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="parking" id="parking"
+                                               {{!empty($client->parking)  ? 'checked' : ''}}
+                                               name="packages[]">
+                                        <input type="hidden" name="parking" value="{{$client->parking}}">
+                                        <label class="form-check-label" for="parking">
+                                            Parking
                                         </label>
                                     </div>
 
@@ -253,7 +322,7 @@
             <form method="POST" action="{{ route('clients.destroy', $client->id) }}">
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-danger">Delete {{ $client->first_name }}</button>
+                <button class="btn btn-danger">Delete {{ $client->name }}</button>
             </form>
         </div>
 

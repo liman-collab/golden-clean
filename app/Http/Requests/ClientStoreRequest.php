@@ -24,8 +24,8 @@ class ClientStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'last_name' => ['required', 'string', 'max:255'],
-            'first_name' => ['required', 'string', 'max:255'],
+//            'last_name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'city_name' => ['required', 'string', 'max:255'],
             'start_month' => ['date'],

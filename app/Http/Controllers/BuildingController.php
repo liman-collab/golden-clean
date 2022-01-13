@@ -7,6 +7,7 @@ use App\Http\Requests\BuildingStoreRequest;
 use App\Models\Building;
 use App\Models\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BuildingController extends Controller
 {
@@ -107,7 +108,11 @@ class BuildingController extends Controller
      */
     public function destroy(Building $building)
     {
+//        dd($building->id);
+
+        Gate::where('building_id',$building->id)->get();
         $building->delete();
+//        dd($res);
         return redirect()->route('buildings.index')->with('message','Banesa u shlye me sukses');
 
     }

@@ -12,8 +12,8 @@ class Client extends Model
 
 
     protected $fillable = [
-        'last_name',
-        'first_name',
+//        'last_name',
+        'name',
         'address',
         'building_id',
         'gate_id',
@@ -22,9 +22,13 @@ class Client extends Model
         'start_month',
         'packages',
         'payment',
-        'ashensor',
-        'mbeturinat',
+        'mirembajtje13',
+        'mirembajtje14',
+        'mirembajtje15',
+        'mirembajtje10',
         'internet',
+        'tv',
+        'parking',
         'paid',
         'end_month'
     ];
@@ -39,6 +43,9 @@ class Client extends Model
     public function invoices(){
         return $this->hasMany(Invoice::class);
     }
+//    public function backUpInvoices(){
+//          return $this->hasMany(BackUpInvoice::class);
+//    }
 
     public function setStartMonthAttribute($value){
         $this->attributes['start_month'] = Carbon::createFromFormat('m/d/Y',$value)->format('Y-m-d');
