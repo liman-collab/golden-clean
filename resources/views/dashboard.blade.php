@@ -248,7 +248,7 @@
                             </div>
                         </div>
                     </div>
-                test test
+
                     <!-- Card Body -->
                     <div class="card-body" style="overflow-y: scroll;">
                         <div class="chart-area" >

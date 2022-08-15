@@ -73,6 +73,11 @@ class InvoiceController extends Controller
             'service_price'=> $clients->sum('payment')
         ]);
 
+        BackUpInvoice::create([
+            'client_id' => $client_id,
+            'month_id'=>$month_id,
+            'service_price'=> $clients->sum('payment')
+        ]);
         return back();
 
     }

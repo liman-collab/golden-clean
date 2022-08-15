@@ -172,10 +172,11 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
 //        Invoice::where('client_id',$client->id)->delete();
+
         $client->delete();
 
-
         return redirect()->route('clients.index')->with('message','Banori u shlye me sukses');
+
     }
 
 

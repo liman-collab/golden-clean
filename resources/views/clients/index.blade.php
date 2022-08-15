@@ -25,6 +25,11 @@
                             {{session('message')}}
                         </div>
                     @endif
+                        @if(session()->has('message1'))
+                            <div class="alert alert-danger">
+                                {{session('message1')}}
+                            </div>
+                        @endif
 
                 </div>
 
